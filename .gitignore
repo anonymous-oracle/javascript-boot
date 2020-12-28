@@ -204,3 +204,4 @@ modules.xml
 node_modules/
 .env
 */.env
+workspace.code-workspace
