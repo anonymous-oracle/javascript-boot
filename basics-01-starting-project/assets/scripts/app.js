@@ -8,7 +8,7 @@ let currentResult = defaultResult;
 //     return sum;
 // }
 
-
+let logEntries = [];
 function getParsedNumberInput() {
     return parseInt(userInput.value);
 }
