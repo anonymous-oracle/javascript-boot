@@ -8,8 +8,15 @@
             "type": "chrome",
             "request": "launch",
             "name": "Launch Chrome against localhost",
-            "url": "file:///home/suhas/javascript/dev-debugging-finished/index.html",
+            "url": "file:///home/suhas/javascript/control-03-monster-killer-starting-project/index.html",
             "webRoot": "${workspaceFolder}"
-        }
+        },       
+        // {
+        //     "type": "chrome",
+        //     "request": "launch",
+        //     "name": "Launch Chrome against localhost",
+        //     "url": "file:///home/suhas/javascript/dev-debugging-finished/index.html",
+        //     "webRoot": "${workspaceFolder}"
+        // }
     ]
 }

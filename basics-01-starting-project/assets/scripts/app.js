@@ -18,7 +18,7 @@ function logOutput(enteredNumber) {
     console.log(logEntries);
 }
 
-function writeLogObject(operator, prevResult, enteredNumber, newResult){
+function writeLogObject(operator, prevResult, enteredNumber, newResult) {
     const entry = {
         operation: operator,
         prevResult: prevResult,
@@ -29,46 +29,43 @@ function writeLogObject(operator, prevResult, enteredNumber, newResult){
     console.log(logEntries);
 }
 
-function addTwoNumbers() {
+
+function calculateResult(calcType) {
     const enteredNumber = getParsedNumberInput();
+    if (calcType !== '+' && calcType !== '-' && calcType !== '*' && calcType !== '/' || !enteredNumber) {
+        return;
+    }
+
     const initialResult = currentResult;
-    const calculationDescription = `${currentResult} + ${enteredNumber}`
-    currentResult = currentResult + enteredNumber;
-    // event listener listens to clicks always, but the outputResult function does not execute again
-    // so if outputResult function is included within the eventlistener call function, then it will be executed every time
+    const calculationDescription = `${currentResult} ${calcType} ${enteredNumber}`
+    if (calcType === '+') {
+        currentResult = currentResult + enteredNumber;
+    } else if (calcType === '-') {
+        currentResult = currentResult - enteredNumber;
+    } else if (calcType === '*') {
+        currentResult = currentResult * enteredNumber;
+    } else if (calcType === '/') {
+        currentResult = currentResult / enteredNumber;
+    };
     outputResult(currentResult, calculationDescription);
-    // logOutput(enteredNumber);
-    writeLogObject('+', initialResult, enteredNumber, currentResult);
+    writeLogObject(calcType, initialResult, enteredNumber, currentResult);
+}
+
+
+function addTwoNumbers() {
+    calculateResult('+');
 }
 
 function subtractTwoNumbers() {
-    const enteredNumber = getParsedNumberInput();
-    const initialResult = currentResult;
-    const calculationDescription = `${currentResult} - ${enteredNumber}`
-    currentResult = currentResult - enteredNumber;
-    outputResult(currentResult, calculationDescription);
-    // logOutput(enteredNumber);
-    writeLogObject('-', initialResult, enteredNumber, currentResult);
+    calculateResult('-');
 }
 
 function multiplyTwoNumbers() {
-    const enteredNumber = getParsedNumberInput();
-    const initialResult = currentResult;
-    const calculationDescription = `${currentResult} * ${enteredNumber}`
-    currentResult = currentResult * enteredNumber;
-    outputResult(currentResult, calculationDescription);
-    // logOutput(enteredNumber);
-    writeLogObject('*', initialResult, enteredNumber, currentResult);
+    calculateResult('*');
 }
 
 function divideTwoNumbers() {
-    const enteredNumber = getParsedNumberInput();
-    const initialResult = currentResult;
-    const calculationDescription = `${currentResult} / ${enteredNumber}`
-    currentResult = currentResult / enteredNumber;
-    outputResult(currentResult, calculationDescription);
-    // logOutput(enteredNumber);
-    writeLogObject('/', initialResult, enteredNumber, currentResult);
+    calculateResult('/');
 }
 
 
