@@ -25,15 +25,16 @@ function playerHit(playerAttack) {
     currentMonsterHealth -= damage;
 }
 
-function checkForWin() {
-
+function bonusLifeCheck(){
     if (currentPlayerHealth <= 0 && hasBonusLife) {
         currentPlayerHealth = chosenMaxLife;
         increasePlayerHealth(chosenMaxLife);
         hasBonusLife = false;
         document.getElementById('bonus-life').textContent = 0;
     }
+}
 
+function checkForWin() {
     if (currentMonsterHealth <= 0 && currentPlayerHealth > 0) {
         if (!alert('Player Won!')) {
             window.location.reload();
@@ -65,6 +66,7 @@ function attackHandler() {
             strongAttackBtn.style.background = 'black';
         }
     }
+    bonusLifeCheck();
     checkForWin();
 }
 
@@ -75,6 +77,7 @@ function strongAttackHandler() {
         strongAttackUsage = PLAYER_STRONG_ATTACK_RELOAD;
         strongAttackBtn.style.fontWeight = 'normal';
         strongAttackBtn.style.background = '#ff0062';
+        bonusLifeCheck();
         checkForWin();
     }
 }
@@ -94,7 +97,7 @@ function healPlayerHandler() {
         currentPlayerHealth += healValue;
         increasePlayerHealth(healValue);
         // monsterHit(MONSTER_ATTACK_VALUE);
-        checkForWin();
+        // checkForWin();
     }, 500);
 }
 
