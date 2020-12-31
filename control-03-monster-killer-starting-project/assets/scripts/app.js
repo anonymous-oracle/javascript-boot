@@ -1,4 +1,3 @@
-const PLAYER_STRONG_ATTACK_RELOAD = 3;
 // const HEAL_VALUE = 20;
 
 let rules = 'Click attack to start the game and proceed accordingly.\n'
@@ -7,6 +6,7 @@ let rules = 'Click attack to start the game and proceed accordingly.\n'
 // alert(rules);
 
 const chosenMaxLife = Number(prompt(rules + 'Now enter the max life of player and monster: ', '150'));
+const PLAYER_STRONG_ATTACK_RELOAD = Math.floor(Math.log10(chosenMaxLife)) * 2;
 let currentMonsterHealth = amplify(chosenMaxLife);
 let currentPlayerHealth = chosenMaxLife;
 let hasBonusLife = true;
@@ -112,7 +112,7 @@ function healPlayerHandler() {
         healBtn.style.fontWeight = 'normal';
         healBtn.style.background = '#ff0062';
         healBtn.textContent = 'HEAL';
-        let healValue = amplify(amplify(amplify(currentPlayerHealth)));
+        let healValue = amplify(currentPlayerHealth) / 2;
         if (healValue + currentPlayerHealth > chosenMaxLife) {
             healValue = chosenMaxLife - currentPlayerHealth;
         }
