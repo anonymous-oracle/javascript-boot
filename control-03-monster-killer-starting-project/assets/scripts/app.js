@@ -61,12 +61,12 @@ function checkForWin() {
         reloadPage();
         return
     }
-    else if (currentMonsterHealth <= 0) {
+    else if (currentMonsterHealth <= 0 && currentPlayerHealth > 0) {
         alert('Player Won :)');
         reloadPage();
         return;
 
-    } else if (currentPlayerHealth <= 0) {
+    } else if (currentPlayerHealth <= 0 && currentMonsterHealth > 0) {
         alert('Monster Won :(');
         reloadPage();
         return;
