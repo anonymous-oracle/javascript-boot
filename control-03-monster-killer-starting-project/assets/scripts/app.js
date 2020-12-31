@@ -56,20 +56,19 @@ function bonusLifeCheck() {
 }
 
 function checkForWin() {
-    if (currentMonsterHealth <= 0 && currentPlayerHealth <= 0) {
-        alert('It\'s a Draw :|');
-        reloadPage();
-        return
-    }
-    else if (currentMonsterHealth <= 0 && currentPlayerHealth > 0) {
-        alert('Player Won :)');
-        reloadPage();
-        return;
-
+    if (currentMonsterHealth <= 0 && currentPlayerHealth > 0) {
+        if (!alert('Player Won!')) {
+            window.location.reload();
+        }
     } else if (currentPlayerHealth <= 0 && currentMonsterHealth > 0) {
-        alert('Monster Won :(');
-        reloadPage();
-        return;
+        if (!alert('Monster Won :(')) {
+            window.location.reload();
+        }
+    }
+    else if (currentMonsterHealth <= 0 && currentPlayerHealth <= 0) {
+        if (!alert('It\'s a Draw :|')) {
+            window.location.reload();
+        }
     }
 }
 
