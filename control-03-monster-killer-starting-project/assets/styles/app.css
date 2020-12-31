@@ -55,8 +55,8 @@ button:focus {
 button:hover.btn,
 button:active {
   transform: scale(1.1);
-  /* background: #a927f5;
-  border-color: #a927f5; */
+  /* background: #a927f5; */
+  /* border-color: #a927f5; */
 }
 
 #health-levels,

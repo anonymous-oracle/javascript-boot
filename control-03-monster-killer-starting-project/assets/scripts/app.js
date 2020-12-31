@@ -1,17 +1,37 @@
-const ATTACK_VALUE = 10;
-const MONSTER_ATTACK_VALUE = 3 * ATTACK_VALUE * (1 + Math.random());
 const PLAYER_STRONG_ATTACK_RELOAD = 3;
 // const HEAL_VALUE = 20;
 
-const chosenMaxLife = 150;
+// const DIFFICULTY = Number(prompt('ENTER THE DIFFICULTY OF THE GAME(1 - 10): ', '3'));
+const DIFFICULTY = 3;
+
+
+let rules = 'Click attack to start the game and proceed accordingly.\n'
+
+// const chosenMaxLife = 5000;
+// alert(rules);
+
+const chosenMaxLife = Number(prompt(rules + 'Now enter the max life of player and monster: ', '150'));
 let currentMonsterHealth = chosenMaxLife;
 let currentPlayerHealth = chosenMaxLife;
 let hasBonusLife = true;
 let strongAttackUsage = PLAYER_STRONG_ATTACK_RELOAD;
+// alert(rules);
 
-let rules = `GAME RULES!!\nFor every ${PLAYER_STRONG_ATTACK_RELOAD} uses of attack, strong attack can be used once.\nWhen strong attack is used, player also heals, but takes some random amount of damage.`
+function amplify(value) {
+    return value * (1 + Math.random());
+}
 
-alert(rules);
+const ATTACK_VALUE = Math.random() * chosenMaxLife;
+const MONSTER_ATTACK_VALUE = amplify(ATTACK_VALUE);
+
+function reloadPage() {
+    window.location.reload();
+}
+
+if (chosenMaxLife <= 1 || isNaN(chosenMaxLife)) {
+    alert('You have not entered a valid health value. Enter a number greater than 1');
+    reloadPage();
+}
 
 adjustHealthBars(chosenMaxLife);
 
@@ -25,7 +45,7 @@ function playerHit(playerAttack) {
     currentMonsterHealth -= damage;
 }
 
-function bonusLifeCheck(){
+function bonusLifeCheck() {
     if (currentPlayerHealth <= 0 && hasBonusLife) {
         currentPlayerHealth = chosenMaxLife;
         increasePlayerHealth(chosenMaxLife);
@@ -36,17 +56,17 @@ function bonusLifeCheck(){
 
 function checkForWin() {
     if (currentMonsterHealth <= 0 && currentPlayerHealth > 0) {
-        if (!alert('Player Won!')) {
-            window.location.reload();
+        if (!alert('Player Won :)')) {
+            reloadPage();
         }
     } else if (currentPlayerHealth <= 0 && currentMonsterHealth > 0) {
         if (!alert('Monster Won :(')) {
-            window.location.reload();
+            reloadPage();
         }
     }
     else if (currentMonsterHealth <= 0 && currentPlayerHealth <= 0) {
         if (!alert('It\'s a Draw :|')) {
-            window.location.reload();
+            reloadPage();
         }
     }
 }
@@ -73,7 +93,7 @@ function attackHandler() {
 function strongAttackHandler() {
     if (strongAttackUsage <= 0) {
         healPlayerHandler();
-        attackType(ATTACK_VALUE * (1 + Math.random()));
+        attackType(amplify(MONSTER_ATTACK_VALUE));
         strongAttackUsage = PLAYER_STRONG_ATTACK_RELOAD;
         strongAttackBtn.style.fontWeight = 'normal';
         strongAttackBtn.style.background = '#ff0062';
