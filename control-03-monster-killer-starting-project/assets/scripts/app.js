@@ -1,10 +1,6 @@
 const PLAYER_STRONG_ATTACK_RELOAD = 3;
 // const HEAL_VALUE = 20;
 
-// const DIFFICULTY = Number(prompt('ENTER THE DIFFICULTY OF THE GAME(1 - 10): ', '3'));
-const DIFFICULTY = 3;
-
-
 let rules = 'Click attack to start the game and proceed accordingly.\n'
 
 // const chosenMaxLife = 5000;
