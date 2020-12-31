@@ -95,7 +95,7 @@ function healPlayerHandler() {
         increasePlayerHealth(healValue);
         // monsterHit(MONSTER_ATTACK_VALUE);
         checkForWin();
-    }, 1000);
+    }, 500);
 }
 
 
@@ -106,4 +106,3 @@ function healPlayerHandler() {
 
 attackBtn.addEventListener('click', attackHandler);
 strongAttackBtn.addEventListener('click', strongAttackHandler);
-healBtn.addEventListener('click', healPlayerHandler)
