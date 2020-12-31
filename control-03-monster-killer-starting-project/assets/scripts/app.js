@@ -6,7 +6,7 @@ let rules = 'Click attack to start the game and proceed accordingly.\n'
 // alert(rules);
 
 const chosenMaxLife = Number(prompt(rules + 'Now enter the max life of player and monster: ', '150'));
-const PLAYER_STRONG_ATTACK_RELOAD = Math.floor(Math.log10(chosenMaxLife)) * 2;
+const PLAYER_STRONG_ATTACK_RELOAD = Math.ceil(Math.log10(chosenMaxLife));
 let currentMonsterHealth = amplify(chosenMaxLife);
 let currentPlayerHealth = chosenMaxLife;
 let hasBonusLife = true;
@@ -18,11 +18,11 @@ function amplify(value) {
     return value * (1 + Math.random());
 }
 
-function writeToLog(event){
+function writeToLog(event) {
     battleLog.push(event);
 }
 
-const ATTACK_VALUE = chosenMaxLife**0.5;
+const ATTACK_VALUE = chosenMaxLife ** 0.5;
 const MONSTER_ATTACK_VALUE = amplify(amplify(ATTACK_VALUE));
 
 function reloadPage() {
@@ -80,7 +80,7 @@ function attackType(playerAttackValue) {
     monsterHit();
     bonusLifeCheck();
     checkForWin();
-    writeToLog({mode: 'attack', playerHealth: currentPlayerHealth, monsterHealth: currentMonsterHealth});
+    writeToLog({ mode: 'attack', playerHealth: currentPlayerHealth, monsterHealth: currentMonsterHealth });
 }
 
 function attackHandler() {
@@ -112,14 +112,14 @@ function healPlayerHandler() {
         healBtn.style.fontWeight = 'normal';
         healBtn.style.background = '#ff0062';
         healBtn.textContent = 'HEAL';
-        let healValue = amplify(currentPlayerHealth) / 2;
+        let healValue = currentMonsterHealth ** 0.5;
         if (healValue + currentPlayerHealth > chosenMaxLife) {
             healValue = chosenMaxLife - currentPlayerHealth;
         }
         currentPlayerHealth += healValue;
         increasePlayerHealth(healValue);
     }, 500);
-    writeToLog({mode: 'heal', playerHealth: currentPlayerHealth, monsterHealth: currentMonsterHealth});
+    writeToLog({ mode: 'heal', playerHealth: currentPlayerHealth, monsterHealth: currentMonsterHealth });
 
 }
 
