@@ -18,7 +18,7 @@ function amplify(value) {
 }
 
 const ATTACK_VALUE = Math.random() * chosenMaxLife;
-const MONSTER_ATTACK_VALUE = amplify(ATTACK_VALUE);
+const MONSTER_ATTACK_VALUE = amplify(amplify(amplify(ATTACK_VALUE)));
 
 function reloadPage() {
     window.location.reload();
