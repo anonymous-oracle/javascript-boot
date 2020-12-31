@@ -7,18 +7,23 @@ let rules = 'Click attack to start the game and proceed accordingly.\n'
 // alert(rules);
 
 const chosenMaxLife = Number(prompt(rules + 'Now enter the max life of player and monster: ', '150'));
-let currentMonsterHealth = chosenMaxLife;
+let currentMonsterHealth = amplify(chosenMaxLife);
 let currentPlayerHealth = chosenMaxLife;
 let hasBonusLife = true;
 let strongAttackUsage = PLAYER_STRONG_ATTACK_RELOAD;
+let battleLog = [];
 // alert(rules);
 
 function amplify(value) {
     return value * (1 + Math.random());
 }
 
-const ATTACK_VALUE = Math.random() * chosenMaxLife;
-const MONSTER_ATTACK_VALUE = amplify(amplify(amplify(ATTACK_VALUE)));
+function writeToLog(event){
+    battleLog.push(event);
+}
+
+const ATTACK_VALUE = chosenMaxLife**0.5;
+const MONSTER_ATTACK_VALUE = amplify(amplify(ATTACK_VALUE));
 
 function reloadPage() {
     window.location.reload();
@@ -31,8 +36,8 @@ if (chosenMaxLife <= 1 || isNaN(chosenMaxLife)) {
 
 adjustHealthBars(chosenMaxLife);
 
-function monsterHit(monsterAttack) {
-    const playerDamage = dealPlayerDamage(monsterAttack);
+function monsterHit() {
+    const playerDamage = dealPlayerDamage(MONSTER_ATTACK_VALUE);
     currentPlayerHealth -= playerDamage;
 }
 
@@ -51,26 +56,31 @@ function bonusLifeCheck() {
 }
 
 function checkForWin() {
-    if (currentMonsterHealth <= 0 && currentPlayerHealth > 0) {
-        if (!alert('Player Won :)')) {
-            reloadPage();
-        }
-    } else if (currentPlayerHealth <= 0 && currentMonsterHealth > 0) {
-        if (!alert('Monster Won :(')) {
-            reloadPage();
-        }
+    if (currentMonsterHealth <= 0 && currentPlayerHealth <= 0) {
+        alert('It\'s a Draw :|');
+        reloadPage();
+        return
     }
-    else if (currentMonsterHealth <= 0 && currentPlayerHealth <= 0) {
-        if (!alert('It\'s a Draw :|')) {
-            reloadPage();
-        }
+    else if (currentMonsterHealth <= 0) {
+        alert('Player Won :)');
+        reloadPage();
+        return;
+
+    } else if (currentPlayerHealth <= 0) {
+        alert('Monster Won :(');
+        reloadPage();
+        return;
     }
 }
 
 function attackType(playerAttackValue) {
     playerHit(playerAttackValue);
+    checkForWin();
     // make the monster hit the player
-    monsterHit(MONSTER_ATTACK_VALUE);
+    monsterHit();
+    bonusLifeCheck();
+    checkForWin();
+    writeToLog({mode: 'attack', playerHealth: currentPlayerHealth, monsterHealth: currentMonsterHealth});
 }
 
 function attackHandler() {
@@ -82,8 +92,6 @@ function attackHandler() {
             strongAttackBtn.style.background = 'black';
         }
     }
-    bonusLifeCheck();
-    checkForWin();
 }
 
 function strongAttackHandler() {
@@ -93,8 +101,6 @@ function strongAttackHandler() {
         strongAttackUsage = PLAYER_STRONG_ATTACK_RELOAD;
         strongAttackBtn.style.fontWeight = 'normal';
         strongAttackBtn.style.background = '#ff0062';
-        bonusLifeCheck();
-        checkForWin();
     }
 }
 
@@ -106,15 +112,15 @@ function healPlayerHandler() {
         healBtn.style.fontWeight = 'normal';
         healBtn.style.background = '#ff0062';
         healBtn.textContent = 'HEAL';
-        let healValue = currentMonsterHealth * Math.random();
+        let healValue = amplify(amplify(amplify(currentPlayerHealth)));
         if (healValue + currentPlayerHealth > chosenMaxLife) {
             healValue = chosenMaxLife - currentPlayerHealth;
         }
         currentPlayerHealth += healValue;
         increasePlayerHealth(healValue);
-        // monsterHit(MONSTER_ATTACK_VALUE);
-        // checkForWin();
     }, 500);
+    writeToLog({mode: 'heal', playerHealth: currentPlayerHealth, monsterHealth: currentMonsterHealth});
+
 }
 
 
