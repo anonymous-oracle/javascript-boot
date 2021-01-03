@@ -5,7 +5,37 @@ let rules = 'Click attack to start the game and proceed accordingly.\n'
 // const chosenMaxLife = 5000;
 // alert(rules);
 
-const chosenMaxLife = Number(prompt(rules + 'Now enter the max life of player and monster: ', '150'));
+
+function getMaxLifeValues() {
+    const enteredValue = prompt(rules + 'Now enter the max life of player and monster: ', '150');
+
+    const parsedValue = parseInt(enteredValue);
+    if (isNaN(parsedValue) || parsedValue <= 0) {
+        throw { message: 'Invalid user input, not a number' }
+    }
+    return parsedValue;
+};
+
+let chosenMaxLife;
+
+try {
+    // can only assign values to variables inside try block; cannot create variables here
+    chosenMaxLife = getMaxLifeValues();
+} catch (error) {
+console.log(error);
+chosenMaxLife = 100;
+alert('you entered something wrong, default value of 100 was used.');
+
+// // re-throwing the error can also be done
+// throw error;
+} finally {
+
+// handle clean up code here
+
+}
+
+
+
 const PLAYER_STRONG_ATTACK_RELOAD = Math.ceil(Math.log10(chosenMaxLife));
 let currentMonsterHealth = amplify(chosenMaxLife);
 let currentPlayerHealth = chosenMaxLife;
@@ -18,6 +48,7 @@ function amplify(value) {
     return value * (1 + Math.random());
 }
 
+
 function writeToLog(event) {
     battleLog.push(event);
 }
@@ -29,10 +60,10 @@ function reloadPage() {
     window.location.reload();
 }
 
-if (chosenMaxLife <= 1 || isNaN(chosenMaxLife)) {
-    alert('You have not entered a valid health value. Enter a number greater than 1');
-    reloadPage();
-}
+// if (chosenMaxLife <= 1 || isNaN(chosenMaxLife)) {
+//     alert('You have not entered a valid health value. Enter a number greater than 1');
+//     reloadPage();
+// }
 
 adjustHealthBars(chosenMaxLife);
 
@@ -74,7 +105,6 @@ function checkForWin() {
 
 function attackType(playerAttackValue) {
     playerHit(playerAttackValue);
-    checkForWin();
     // make the monster hit the player
     monsterHit();
     bonusLifeCheck();
@@ -121,6 +151,10 @@ function healPlayerHandler() {
     writeToLog({ mode: 'heal', playerHealth: currentPlayerHealth, monsterHealth: currentMonsterHealth });
 
 }
+
+
+
+
 
 
 
