@@ -83,3 +83,6 @@ startGameBtn.addEventListener('click', function () {
 // const add = (a, b) => a + b;
 // const greet = (name) => alert(`Hi ${name}!`);
 // const sayHi = () => alert('Hi!');
+
+// // NOTE: functions can also be used with default values
+// function defaultValueFunction(arg1, arg2=defaultValueForArg2){};
