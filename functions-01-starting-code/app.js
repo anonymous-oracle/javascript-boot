@@ -86,3 +86,19 @@ startGameBtn.addEventListener('click', function () {
 
 // // NOTE: functions can also be used with default values
 // function defaultValueFunction(arg1, arg2=defaultValueForArg2){};
+
+
+
+// // create functions taking variable number of arguments
+// const sumUp = (...numbers) => {
+//     let sum = 0;
+//     for (const num of numbers) {
+//         sum += num;
+//     }
+//     return sum;
+// };
+
+
+
+// let res = sumUp(1, 5, 1, 5, 6, 6, 9, 7, 2, 3, 9, 6, 3);
+// console.log(res);
