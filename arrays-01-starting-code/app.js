@@ -76,7 +76,7 @@ let newSlice = testResults.slice();
 newSlice.push(7.99);
 console.log(testResults);
 console.log(newSlice);
-console.log(testResults.slice(0,3));
+console.log(testResults.slice(0, 3));
 console.log(testResults.slice(2));
 
 newSlice = testResults.concat(newSlice);
@@ -124,7 +124,7 @@ let taxAdjustedPrices = [];
 // }
 
 prices.forEach((price, idx, prices) => {
-    taxAdjustedPrices.push(price * (1 + tax));
+    taxAdjustedPrices.push({ index: idx, taxAdjPrice: price * (1 + tax) });
 });
 
 console.log(taxAdjustedPrices);

@@ -96,3 +96,82 @@
 // console.log(newSlice.lastIndexOf(-5))
 
 // console.log(testResults.includes(-5));
+
+// // // ///////////////////////////////////////////////////////////////////
+
+
+// console.log('\n');
+
+// let prices = [10.99, 5.99, 3.99, 6.59];
+// let tax = 0.19;
+// let taxAdjustedPrices = [];
+
+// // for (const price of prices) {
+// //     taxAdjustedPrices.push(price * (1 + tax));
+// // }
+
+// prices.forEach((price, idx, prices) => {
+//     taxAdjustedPrices.push({ index: idx, taxAdjPrice: price * (1 + tax) });
+// });
+
+// console.log(taxAdjustedPrices);
+
+// // // ///////////////////////////////////////////////////////////////////
+// console.log('\n');
+
+// let prices = [10.99, 5.99, 3.99, 6.59];
+// let tax = 0.19;
+
+// // the returned object in the map function will be a new object created in memory
+// const newPrices = prices.map((price, idx, prices) => {
+//     return { index: idx, taxAdjPrice: price * (1 + tax) };
+// });
+
+// console.log(prices);
+// console.log(newPrices);
+// console.log(`sorted prices: ${prices.sort((a, b) => { return a > b })}`)
+// console.log(`reversed prices: ${prices.reverse()}`)
+// let filterVal = 6
+// console.log(`prices greater than ${filterVal}: ${prices.filter((price, idx, prices) => { return price > filterVal })}`);
+// console.log(`prices greater than ${filterVal}: ${prices.filter(price => price > filterVal)}`);
+
+// // the zero argument in the end, id the initial value set for the prevVal
+// let sum = prices.reduce((prevVal, curVal, curIdx, prices) => { return prevVal + curVal; }, 0);
+// console.log(sum);
+// sum = prices.reduce((prevVal, curVal) => prevVal + curVal, 0);
+// console.log(sum);
+
+// // // // ///////////////////////////////////////////////////////////////////
+// console.log('\n');
+// const data = 'new york;10.99;2000';
+// console.log(data);
+// console.log('\n');
+// let newData = data.split(';')
+// newData[1] = +newData[1]
+// console.log(newData);
+// let fullName = ['Max', 'Schwarz'];
+// let fullNameJoined = fullName.join(' ');
+// console.log(fullNameJoined);
+// let copiedNames = [...fullName];
+// console.log(copiedNames);
+
+///////////////////////////////////////////////////////////////////
+// console.log('\n');
+// let prices = [10.99, 5.99, 3.99, 6.59];
+// // // the below statement will give an error, so use the statement after that
+// // console.log(Math.min(prices));
+// console.log(Math.min(...prices));
+
+///////////////////////////////////////////////////////////////////
+// console.log('\n');
+// let nameData = ['Max', 'Schwarz'];
+
+// // let [firstName, lastName] = nameData;
+// // console.log(firstName, lastName);
+
+// nameData = ['Max', 'Schwarz', 'Mr', 30];
+
+// let [firstName, lastName, ...otherInfo] = nameData;
+// console.log(firstName, lastName, otherInfo);
+
+///////////////////////////////////////////////////////////////////
