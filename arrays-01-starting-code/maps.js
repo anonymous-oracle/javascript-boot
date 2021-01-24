@@ -27,3 +27,15 @@
 ////////////////////////////////////////////////////////////////////
 
 // WEAK MAP
+let person = { name: 'Max' };
+let persons = new WeakMap();
+persons.set(person, 'extra info');
+console.log(persons);
+
+// now suppose after some operations, the 'person' object will be removed by setting it to null, then the garbage collector will free
+// up that memory; however if it were an ordinary map, then the garbage collector won't clear the memory
+
+// ...some operations
+person = null;
+
+console.log(persons);
