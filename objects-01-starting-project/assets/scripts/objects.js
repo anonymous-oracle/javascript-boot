@@ -13,6 +13,7 @@ person.isAdmin = true;
 console.log(person);
 delete person.age;
 console.log(person);
+console.log('\n');
 
 // to use a string as key, do the follows
 person = {
@@ -35,12 +36,14 @@ person = {
     greet: () => { return 'Hi there' },
     1.5: 'a number'
 };
+console.log('\n');
 
 console.log(person[1.5]);
 console.log(person['1.5']);
 
 let keyNum = 1.5;
 console.log(person[keyNum]);
+console.log('\n');
 
 let userChoiceField = 'level';
 // by enclosing the variable userChoiceField inside the square brackets, we can use the value inside the variable as the
@@ -49,7 +52,65 @@ person = {
     'first-name': 'Anonymous',
     age: 24,
     hobbies: ['coding', 'fitness'],
-    greet: () => { return 'Hi there' },
+    greet: function() { return 'Hi there' },
     1.5: 'a number',
     [userChoiceField]: '...'
 };
+console.log('\n');
+// using spread operator for objects
+let person2 = {...person};
+console.log(person2);
+
+// deep copying arrays within objects and overwriting values
+// age: 29 will overwrite the age value obtained after the spread
+// in the hobbies: field, the spread operator on the person.hobbies will be carried out which will put out the
+// values in the new array which has a copy of the old array
+let person3 = {...person, age: 29, hobbies:[...person.hobbies]}
+
+// another way to deep copy objects
+let person4 = Object.assign({}, person);
+console.log('\n');
+console.log(person4);
+person4 = Object.assign(person3, person);
+console.log('\n');
+console.log(person4);
+
+// OBJECT DESTRUCTURING
+// pull out the value of the object keyed by hobbies
+let {hobbies} = person;
+// similarly
+let {age} = person;
+console.log('\n');
+console.log(hobbies);
+console.log(age);
+
+let {age: newAge, ...others} = person;
+console.log('\n');
+console.log(newAge);
+console.log(others);
+
+
+
+// USING THE this keyword
+console.log('\n');
+person = {
+    'first-name': 'Anonymous',
+    age: 24,
+    hobbies: ['coding', 'fitness'],
+    greet: function() { return `Hi there, I'm ${this['first-name']}` },
+    1.5: 'a number',
+    [userChoiceField]: '...'
+};
+console.log(person.greet());
+
+// OR
+console.log('\n');
+person = {
+    'first-name': 'Anonymous',
+    age: 24,
+    hobbies: ['coding', 'fitness'],
+    greet() { return `Hi there, I'm ${this['first-name']}` },
+    1.5: 'a number',
+    [userChoiceField]: '...'
+};
+console.log(person.greet());
