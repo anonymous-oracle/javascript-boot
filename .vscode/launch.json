@@ -5,17 +5,17 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "type": "chrome",
+            "type": "firefox",
             "request": "launch",
-            "name": "Launch Chrome against localhost",
-            "url": "file:///home/suhas/javascript/functions-01-starting-code/index.html",
-            "webRoot": "${workspaceFolder}"
-        },       
+            "reAttach": true,
+            "name": "Launch index.html",
+            "file": "${workspaceFolder}/oop-01-starting-setup/index.html"
+        },
         // {
         //     "type": "chrome",
         //     "request": "launch",
         //     "name": "Launch Chrome against localhost",
-        //     "url": "file:///home/suhas/javascript/dev-debugging-finished/index.html",
+        //     "url": "http://localhost:8080",
         //     "webRoot": "${workspaceFolder}"
         // }
     ]
