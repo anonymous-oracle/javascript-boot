@@ -25,7 +25,9 @@ class ProjectList {
         }
         console.log(this.projects);
     }
-    addProject() { };
+    addProject() {
+        console.log(this)
+    };
     switchProject(projectId) {
         // const projectIndex = this.projects.find(p=>p.id===projectId);
         // this.projects.splice(projectIndex, 1);
@@ -42,7 +44,8 @@ class App {
     static init() {
         const activeProjectsList = new ProjectList('active');
         const finishedProjectsList = new ProjectList('finish');
-        activeProjectsList.setSwitchHandlerFunction(finishedProjectsList);
+        activeProjectsList.setSwitchHandlerFunction(finishedProjectsList.addProject.bind(finishedProjectsList));
+        finishedProjectsList.setSwitchHandlerFunction(activeProjectsList.addProject.bind(activeProjectsList));
     }
 }
 
