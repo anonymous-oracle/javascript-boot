@@ -42,7 +42,7 @@ class App {
     static init() {
         const activeProjectsList = new ProjectList('active');
         const finishedProjectsList = new ProjectList('finish');
-        
+        activeProjectsList.setSwitchHandlerFunction(finishedProjectsList);
     }
 }
 
