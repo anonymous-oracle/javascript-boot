@@ -3,7 +3,16 @@ const button = document.querySelector('button');
 
 // };
 
-const buttonClickHandler = () => {alert('Button was clicked!')};
-const anotherButtonClickHandler=()=>{
+const buttonClickHandler = () => { alert('Button was clicked!') };
+const anotherButtonClickHandler = () => {
     console.log('This was clicked!');
 };
+
+// button.onclick = buttonClickHandler;
+// button.onclick = anotherButtonClickHandler;
+
+button.addEventListener('click', buttonClickHandler);
+
+setTimeout(()=>{
+    button.removeEventListener('click', buttonClickHandler);
+}, 2000);
