@@ -18,10 +18,10 @@
 // console.log(20.2.toFixed(20));
 // console.log(20.2.toFixed(5)===20.2);
 
-// BIGINT
-// WHEN THERE IS A HUGE INTEGER, JUST ADD n TO THE END OF THE NUMBER LITERAL
-// without bigint
-const maxNum = Number.MAX_SAFE_INTEGER
-const bigInt = 999999999999999999999999999999999999999999999999999999999n;
-console.log(maxNum);
-console.log(bigInt);
+// // BIGINT
+// // WHEN THERE IS A HUGE INTEGER, JUST ADD n TO THE END OF THE NUMBER LITERAL
+// // without bigint
+// const maxNum = Number.MAX_SAFE_INTEGER
+// const bigInt = 999999999999999999999999999999999999999999999999999999999n;
+// console.log(maxNum);
+// console.log(bigInt);
