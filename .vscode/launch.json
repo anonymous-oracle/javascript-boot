@@ -9,7 +9,7 @@
             "request": "launch",
             "reAttach": true,
             "name": "Launch index.html",
-            "file": "${workspaceFolder}/oop-01-starting-setup/index.html"
+            "file": "${workspaceFolder}/http-01-starting-setup/index.html"
         },
         // {
         //     "type": "chrome",
