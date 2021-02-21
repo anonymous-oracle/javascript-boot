@@ -61,23 +61,23 @@ function sendHttpRequest(method, url, data = null) {
 
         // fetch returns a stream of data; so it does not return everything together
         // in order to get everything at once we use .then()
-        // return fetch(JSON_PLACEHOLDER, {
-        //     method: method,
-        //     body: JSON.stringify(data),
-        //     headers: {
-        //         'Content-Type':'application/json'
-        //     }
-        // }).then(response => {
-        //     // this will give out the entire data instead of a stream
-        //     return response.json();
-        // }); // fetch() uses promise on it's own
-
-        // ==========================================================================
-
-        return fetch(JSON_PLACEHOLDER).then(response => {
+        return fetch(JSON_PLACEHOLDER, {
+            method: method,
+            body: JSON.stringify(data),
+            // headers: {
+            //     'Content-Type':'application/json'
+            // }
+        }).then(response => {
             // this will give out the entire data instead of a stream
             return response.json();
         }); // fetch() uses promise on it's own
+
+        // ==========================================================================
+
+        // return fetch(JSON_PLACEHOLDER).then(response => {
+        //     // this will give out the entire data instead of a stream
+        //     return response.json();
+        // }); // fetch() uses promise on it's own
 
         // ==========================================================================
 
