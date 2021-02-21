@@ -72,7 +72,7 @@ function sendHttpRequest(method, url, data = null) {
         if (response.status >= 200 && response.status < 300) {
             return response.json();
         } else {
-            response.json();
+            response.json(); 
             throw new Error('Something went wrong on the server-side');
         }
     }).catch(error => {
