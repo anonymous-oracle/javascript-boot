@@ -32,60 +32,68 @@ const postList = document.querySelector('ul');
 function sendHttpRequest(method, url, data = null) {
     // PROMISIFYING THE HTTP REQUEST METHOD 
     // const promise = new Promise((resolve, reject) => {
-        // const xhr = new XMLHttpRequest();
-        // // https://jsonplaceholder.typicode.com/posts
-        // xhr.open(method, url);
+    // const xhr = new XMLHttpRequest();
+    // // https://jsonplaceholder.typicode.com/posts
+    // xhr.open(method, url);
 
-        // xhr.responseType = 'json';
+    // xhr.responseType = 'json';
 
-        // // this error handler kicks in only for network related errors and descrepancies 
-        // xhr.onerror = function () {
-        //     console.log(xhr.responseType);
-        //     console.log(xhr.status);
-        // }
+    // // this error handler kicks in only for network related errors and descrepancies 
+    // xhr.onerror = function () {
+    //     console.log(xhr.responseType);
+    //     console.log(xhr.status);
+    // }
 
-        // xhr.onload = function () {
-        //     if (xhr.status >= 200 && xhr.status < 300) {
-        //         resolve(xhr.response);
-        //     }
-        //     // onload is handled only for above status codes; for network related errors, .onerror is used
-        //     else {
-        //         reject(new Error('Something went wrong over the network'));
-        //     }
-        //     // const listOfPosts = JSON.parse(xhr.response);
-        // };
+    // xhr.onload = function () {
+    //     if (xhr.status >= 200 && xhr.status < 300) {
+    //         resolve(xhr.response);
+    //     }
+    //     // onload is handled only for above status codes; for network related errors, .onerror is used
+    //     else {
+    //         reject(new Error('Something went wrong over the network'));
+    //     }
+    //     // const listOfPosts = JSON.parse(xhr.response);
+    // };
 
-        // xhr.send(JSON.stringify(data));
+    // xhr.send(JSON.stringify(data));
 
-        // ==========================================================================
+    // ==========================================================================
 
-        // fetch returns a stream of data; so it does not return everything together
-        // in order to get everything at once we use .then()
-        return fetch(JSON_PLACEHOLDER, {
-            method: method,
-            body: JSON.stringify(data),
-            // headers: {
-            //     'Content-Type':'application/json'
-            // }
-        }).then(response => {
-            // this will give out the entire data instead of a stream
+    // fetch returns a stream of data; so it does not return everything together
+    // in order to get everything at once we use .then()
+    return fetch(JSON_PLACEHOLDER, {
+        method: method,
+        body: JSON.stringify(data),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then(response => {
+        // this will give out the entire data instead of a stream
+        if (response.status >= 200 && response.status < 300) {
             return response.json();
-        }); // fetch() uses promise on it's own
+        } else {
+            response.json();
+            throw new Error('Something went wrong on the server-side');
+        }
+    }).catch(error => {
+        console.log(error);
+        throw new Error('Something went wrong!');
+    }); // fetch() uses promise on it's own
 
-        // ==========================================================================
+    // ==========================================================================
 
-        // return fetch(JSON_PLACEHOLDER).then(response => {
-        //     // this will give out the entire data instead of a stream
-        //     return response.json();
-        // }); // fetch() uses promise on it's own
+    // return fetch(JSON_PLACEHOLDER).then(response => {
+    //     // this will give out the entire data instead of a stream
+    //     return response.json();
+    // }); // fetch() uses promise on it's own
 
-        // ==========================================================================
-
-
+    // ==========================================================================
 
 
 
-        // });
+
+
+    // });
     // });
     // return promise;
 };
