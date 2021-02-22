@@ -72,8 +72,10 @@ function sendHttpRequest(method, url, data = null) {
         if (response.status >= 200 && response.status < 300) {
             return response.json();
         } else {
-            response.json(); 
-            throw new Error('Something went wrong on the server-side');
+            return response.json().then( errData => {
+                console.log(errData);
+                throw new Error('Something went wrong on the server-side');
+            }); // returning here so that the data returned can be examined
         }
     }).catch(error => {
         console.log(error);
@@ -111,7 +113,7 @@ function sendHttpRequest(method, url, data = null) {
 // }
 
 async function fetchPosts() {
-    // try {
+    try {
     const responseData = await sendHttpRequest('GET', JSON_PLACEHOLDER);
     const listOfPosts = responseData;
     for (const post of listOfPosts) {
@@ -121,9 +123,9 @@ async function fetchPosts() {
         postEl.querySelector('li').id = post.id;
         listElement.append(postEl);
     }
-    // } catch (error) {
-    //     alert(error.message)
-    // }
+    } catch (error) {
+        alert(error.message)
+    }
 
 };
 
