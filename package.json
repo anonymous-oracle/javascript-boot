@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/anonymous-oracle/javascript-boot/issues"
   },
-  "homepage": "https://github.com/anonymous-oracle/javascript-boot#readme"
+  "homepage": "https://github.com/anonymous-oracle/javascript-boot#readme",
+  "devDependencies": {
+    "eslint": "^7.20.0"
+  }
 }
