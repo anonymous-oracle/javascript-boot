@@ -109,12 +109,20 @@ const course = {
 const courseHandler = {
     get(obj, propertyName) {
         // console.log(propertyName); // commenting out this line will only print the property value
+        if (propertyName === 'length') {
+            return 0;
+        }
         return obj[propertyName] || 'NOT FOUND';
+    },
+    set(obj, propertyName, newValue){
+        obj[propertyName]=newValue;
     }
 };
 
 // wrapping an extra object around course object
 const pCourse = new Proxy(course, courseHandler);
-console.log(pCourse.title);
+console.log(pCourse.title, pCourse.length, pCourse.rating);
+pCourse.rating = 5;
+console.log(pCourse.title, pCourse.length, pCourse.rating);
 console.log(course);
 console.log(pCourse);
